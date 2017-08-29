@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 4[조건문]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+      
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="4-&#xC870;&#xAC74;&#xBB38;">4. 조건문</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 프로그램에서 분기를 만들 수 있다.<br>
+<strong>2.</strong> 열거형을 사용할 수 있다.<br>
+<strong>3.</strong> 논리 연산자를 응용할 수 있다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xC870;&#xAC74;&#xBB38;">- 조건문</h4>
+
+<p>게임이나 앱을 실행하다보면 사용자로부터 입력을 받는 창을 본 적이 있을 것이다. 가령 '종료하시겠습니까? (y/n)' 같은 것들 말이다. <strong>조건문</strong>(conditional statement)은 프로그램에게 분기를 제공하게 해주는 구문이다. C++의 조건문에는 <code>if</code>, <code>else</code>, 삼항 연산자<code>(?:)</code>, <code>switch</code>로 네 가지가 있다. 자세히 알아보자.</p>
+<ul>
+<li><code>if</code></li>
+</ul>
+<blockquote>
+<center> if (조건) 구문; </center>
+</blockquote>
+<p><code>if</code> 구문의 문법은 이렇다. <code>if</code>를 쓰고 괄호 안에 조건을 써준다. 이 때의 조건은 <code>true</code>거나 <code>false</code>일 수 있는 <code>bool</code>형이다. 조건이 참이라면 구문을 실행하게 된다. 예제를 확인해보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//if 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>어떻게 동작하는지 직관적으로 알 수 있을 것이다. 그러나 다음과 같은 예제는 원하는 대로 동작하지 않는다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//if 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"굉장히 높은 숫자군요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>50 미만의 숫자를 입력했음에도 두 번째 <code>puts()</code>가 실행 되었다. 이를 통해 <code>if</code>문은 조건이 참일 시 바로 다음 구문만 실행한다는 것을 알 수 있을 것이다. 그럼, 여러 구문을 동작하는 방법이 없을까? 아니다. 있다. 바로, 블록을 쓰는 것이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//if 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"굉장히 높은 숫자군요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이제는 분명히 원하는 대로 동작한다. 구문이 하나이던, 여러 개이던 블록을 넣어주는 것이 좋다. 후의 코드를 수정할 때에도 실수를 방지할 수 있기 때문이다.</p>
+<ul>
+<li><code>else</code></li>
+</ul>
+<blockquote>
+<center> else 구문; </center>
+</blockquote>
+<p><code>if</code>문으로 내는 분기는 두 방향이다. 하나는 '그렇거나'(if), 다른 하나는 '그렇지 않거나'. 후자를 담당하는 부분이 <code>else</code>문이다. 그렇기 때문에, 단독으로 쓰일 수 없고, 꼭 <code>if</code>문과 같이 붙어야 한다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//else 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"굉장히 높은 숫자군요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token comment" spellcheck="true">//else도 if의 특성을 닮고 있다.</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"에게, 숫자가 너무 작네요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이미 결과를 예상한 사람들도 있을 것 같다. 주의해야 할 것은 <code>else</code>는 가장 가까이 있는 <code>if</code>와 붙는다. 즉, 다음처럼 쓴다고 기대하는 바대로 결과가 나오진 않는다.</p>
+<pre class="language-c++"><span class="token keyword">if</span> <span class="token punctuation">(</span>boolean<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment" spellcheck="true">//Blah Blah</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>boolean<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment" spellcheck="true">//Blah Blah</span>
+<span class="token keyword">else</span>                <span class="token comment" spellcheck="true">//두번째 if문과 붙음</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment" spellcheck="true">//Blah Blah</span>
+</pre>
+<p>주의하자.</p>
+<ul>
+<li><code>?:</code>(삼항 연산자)</li>
+</ul>
+<blockquote>
+<center> 조건 ? 참일 때 구문 : 거짓일 때 구문; </center>
+</blockquote>
+<p>단순히 <code>if else</code>로 끝나는 분기라면 삼항 연산자로 한번에 쓸 수 있다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//삼항 연산자 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">?</span>
+        <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span> <span class="token operator">:</span>
+              <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"에게, 숫자가 너무 작네요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>하지만, 구문이 길다면 가독성이 떨어지기에, 비교적 간단한 구문에만 쓰이곤 한다.<small>(그렇다고 긴 구문에 완전히 안 쓰인다고 말하는 것은 아니다.)</small> 긴 구문을 쓴다면 위에 나와있는 것과 같이 들여쓰기를 이용해 잘 정리를 해줘야 할 것이다.</p>
+<p>자 그럼 분기를 여러 방향으로 내볼 순 없을까? 이렇게 쓰면 가능하다. <code>else</code> 문에 <code>if</code>문을 연달아 쓰는 것이다. 즉, '그렇지 않거나'에 또 다른 조건을 붙여주는 것이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//else 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 50이상입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"굉장히 높은 숫자군요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">>=</span> <span class="token number">30</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"그래도 준수하네요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"에게, 너무 작네요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이제 여러 방향으로 분기를 낼 수 있게 되었다. 자, 그럼 이것을 토대로 숫자를 10단위로 잘라보자. 어떤가? 귀찮고 가독성도 뛰어나지 않아 보인다. 이럴 때 쓸 수 있는 것이 <code>switch</code>문이다.</p>
+<ul>
+<li><code>switch</code></li>
+</ul>
+<blockquote>
+  <center>
+  switch ( 표현식 )
+  </center>
+  <center>
+  case 상수표현식 : 구문
+  </center>
+  <center>
+  [default  : 구문]
+  </center>
+</blockquote>
+<p>앞서 나열한 것들 보다 뭔가 복잡해 보이지만, 당황하지 말고 차근차근 보자.</p>
+<p>우선 표현식에는 정수가 들어간다. int형 변수나, 정수 리터럴, int로 명시적 변환된 것들이 있다. <code>switch</code>는 <code>case</code> 레이블과 짝 지어지는데, 이 <code>case</code> 레이블에는 상수 표현식이 들어간다. 표현식에 들어간 값이 해당 <code>case</code> 레이블과 일치할시 구문이 실행된다. <code>default</code> 레이블은 써도 되고 안써도 되지만, 되도록 쓰는 것을 권장한다. 어떠한 <code>case</code>에도 속하지 않을 시, 이 레이블이 실행된다.</p>
+<p>백문이 불여일견. 직접 한번 보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//switch 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"1~100까지의 숫자를 입력해주세요. : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>num <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">10</span><span class="token operator">:</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"100 이네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">9</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"90번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">8</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"80번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">7</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"70번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">6</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"60번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">5</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"50번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">4</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"40번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"30번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"20번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"10번대네요!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"범위를 넘어선 수에요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>여러분이 쓴 <code>if else</code>구문보다 훨씬 보기가 편하고 깔끔해보인다. 그럼 실행해보자. 결과가 어떤가? 이상한 결과가 뜨지 않는가?</p>
+<p>왜 일까? 하나 빠뜨렸기 때문이다. 바로 <code>break</code>문이다. 해당 레이블로 이동한 후에는 '제동'을 걸어주지 않으면 중괄호 가드레일을 만나기 전까지 그냥 달려버린다. 따라서, <code>break</code>문을 쓰는 습관을 들이자. 물론 이 특성을 이용해서 다음과 같은 것도 가능하다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//switch 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"시험 점수를 입력해주세요.(만점 100점) : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>num <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">10</span><span class="token operator">:</span> <span class="token keyword">case</span> <span class="token number">9</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 A입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">8</span><span class="token operator">:</span> <span class="token keyword">case</span> <span class="token number">7</span><span class="token operator">:</span> <span class="token keyword">case</span> <span class="token number">6</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 B입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">5</span><span class="token operator">:</span> <span class="token keyword">case</span> <span class="token number">4</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 C입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span> <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 D입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 인생, 아, 아니 학점은 F입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"이상한 거 입력하지 마세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이해가 되는가? 비슷한 군끼리 묶은 것이다. 이렇듯 <code>switch</code>문은 형식이 균일하며 처리해야 할 조건이 많을 때 유용하다. 모든 분기문을 <code>switch</code>로 고칠 순 없겠지만, 분기가 많고 변환이 가능하다면 적극 사용해보자.</p>
+<p>자 그럼 여기서, 리터럴을 되도록 사용하지 말자고 했던 걸 기억하는가? 대신 기호상수를 쓰는 것이 낫다고 하였다. 그럼 기호 상수로 고쳐보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//switch 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> GRADE_A 10</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> GRADE_B 9</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> GRADE_C 8</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> GRADE_D 7</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> GRADE_F 6</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"시험 점수를 입력해주세요.(만점 100점) : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>num <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> GRADE_A<span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 A입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> GRADE_B<span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 B입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> GRADE_C<span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 C입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> GRADE_D<span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 D입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> GRADE_F<span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"당신의 학점은 F입니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"이상한 거 입력하지 마세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>조금 더 의미는 와 닿는다. 그럼 이걸 의미론적으로 묶을 순 없을까? 있다. 열거형을 이용하면 정수 상수형을 한 데로 묶을 수 있다.</p>
+<h4 class="mume-header" id="-&#xC5F4;&#xAC70;&#xD615;">- 열거형</h4>
+
+<blockquote>
+<center> enum [태그] { 리스트 }; </center>
+</blockquote>
+<p><strong>열거형</strong>(enumeration)은 명명된 정수 상수의 집합으로 구성된다.  태그는 써도 되고 안써도 된다. 열거형 또한 '타입'이라는 것에 주의하자. 즉, 변수 선언이 가능하다. 열거형 변수는 열거형 집합의 값 중 하나를 지정한다.</p>
+<pre class="language-c++"><span class="token keyword">enum</span> Grade <span class="token punctuation">{</span> Grade_F<span class="token punctuation">,</span> Grade_D<span class="token punctuation">,</span> Grade_C<span class="token punctuation">,</span> Grade_B<span class="token punctuation">,</span> GradeA <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Grade temp <span class="token operator">=</span> Grade_F<span class="token punctuation">;</span>
+</pre>
+<p>열거형은 이런 기호 상수들의 집합이기에 모든 산술 및 관계형 연산자의 피연산자로 사용할 수 있다. 또한 값이 자동으로 생성되고 어디서든 명명할 수 있는 이점을 제공한다.</p>
+<p>열거형 집합 멤버엔 다음과 같은 규칙이 있다.</p>
+<blockquote>
+<ul>
+<li>중복된 상수 값이 포함될 수 있다.</li>
+<li>열거형 목록의 식별자는 표시 유형이 같은 동일한 범위에 있는 다른 식별자(다른 열거형 목록의 일반 변수 이름 및 식별자 포함)와 구별되어야 한다.</li>
+<li>첫번째 값을 지정하지 않으면, 0을 할당한다.</li>
+<li>다음 값을 지정하지 않으면 이전 값에 +1이 된 값을 할당한다.</li>
+</ul>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 두 정수를 입력 받아</p>
+<ul>
+<li>앞수가 뒷수 보다 크면 &gt;</li>
+<li>앞수가 뒷수 보다 작으면 &lt;</li>
+<li>같으면 =</li>
+</ul>
+<p>를 출력하는 프로그램을 작성하라.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">3 4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">&lt;
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">4 4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">=
+</pre>
+<p><strong>2.</strong> 컴돌이는 월,수,금 수영을 신청했다.</p>
+<ul>
+<li>월요일</li>
+<li>화요일</li>
+<li>수요일</li>
+<li>목요일</li>
+<li>금요일</li>
+<li>토요일</li>
+<li>일요일</li>
+</ul>
+<p>수영장을 가는 날인지 아닌지를 판별하는 프로그램을 작성하라.</p>
+<p><strong>입력</strong><br>
+1 에서 7 사이의 자연수가 입력으로 주어진다.</p>
+<p><strong>출력</strong><br>
+수영장 가는 날이면 enjoy , 아니면 oops 를 출력</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">1
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">enjoy
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">oops
+</pre>
+<p><strong>3.</strong> 자연수를 입력으로 받아 윤년이면 YES , 아니면 NO 를 출력하는 프로그램을 작성하라.<br>
+윤년이란 ,</p>
+<ul>
+<li>4의 배수이고 100 의 배수가 아님.</li>
+<li>400 의 배수임</li>
+</ul>
+<p>두 가지중 하나라도 참이면 윤년</p>
+<p><strong>입력</strong><br>
+입력되는 수는 3000 이하의 자연수이다.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">YES
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">100
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">NO
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">200
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">NO
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">400
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">YES
+</pre>
+<p><strong>4.</strong> a,b,q 가 정수이고 다음 식이 만족할 때</p>
+<blockquote>
+<p>b = a × q (단,a‡0)</p>
+</blockquote>
+<p>a 는 b 의 약수, b 는 a 의 배수로 약속되어 진다.<br>
+a 가 b 의 약수이면 a | b 로 표시하고 그렇지 않으면 a ł b 로 표시하는 프로그램을 작성하라.</p>
+<p><strong>입력</strong><br>
+두 정수 m , n 이 차례로 주어진다. m , n 값으로 0 이 입력될 수 있다. (-100 &lt;= m,n &lt;= 100)<br>
+참고로 0 은 모든 수의 배수이고 어떤 수의 약수는 될 수 없다.</p>
+<p><strong>출력</strong><br>
+기호 ł 는 !| 로 대신한다.<br>
+m 이 n 의 약수이면 m | n 를 아니면 m !| n 를 출력한다. 숫자와 기호 사이에는 한 칸의 공백을 둔다.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">2 4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">2 | 4
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">3 4
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">3 !| 4
+</pre>
+<hr>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [4. 조건문](#4-조건문)
+	* [- 학습 목표](#-학습-목표)
+	* [- 조건문](#-조건문)
+	* [- 열거형](#-열거형)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

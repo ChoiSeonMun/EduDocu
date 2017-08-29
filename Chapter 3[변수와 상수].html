@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 3[변수와 상수]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="3-&#xBCC0;&#xC218;&#xC640;-&#xC0C1;&#xC218;">3. 변수와 상수</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 캐스팅을 이해한다.<br>
+<strong>2.</strong> 변수와 상수를 입출력할 수 있다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xCE90;&#xC2A4;&#xD305;casting">- 캐스팅(casting)</h4>
+
+<p>지난 시간, 우리는 변수와 상수가 무엇인지, 어떻게 선언하는지 알아보았다. 또한, 타입이 얼마나 중요한 것인지도 배웠다. 원래는 다른 타입 간 연산이 불가능하게 되어있으나, C++에서는<small>(그리고 대부분의 다른 언어에서도)</small> 유연성있게 간접적으로 연산할 수 있는 기능을 지원한다. 이것이 바로 캐스팅, 우리말로 하면 `형 변환`이다. 형 변환은 안전한 변환과 안전하지 않은 변환이 있다. 한번 자세히 알아보자.</p>
+<ul>
+<li>안전한 변환</li>
+</ul>
+<p>일단 기본적으로 같은 분류 안에서는 작은 크기의 타입에서 큰 크기로 타입으로 변환되는 것은 안전하다. 이유는 직관적으로 알 수 있을 것이다.</p>
+<blockquote>
+<ul>
+<li>정수형에서 정수형으로<small>(승격)</small></li>
+</ul>
+<p>부호가 같을 때, <code>char</code>-&gt;<code>int</code>일 때는, 맨 끝 1바이트만 해당 값으로 채워지고 나머지는 0으로 채워진다. <code>bool</code>-&gt;<code>int</code>일 때는, <code>true</code>일시 <code>1</code>이, <code>false</code>일시 <code>0</code>이 채워진다.</p>
+<ul>
+<li>정수형에서 실수형으로</li>
+</ul>
+<p><code>char</code>, <code>int</code>에서 <code>double</code>형으로 변환될 때는, 지수가 해당 값으로 대입되고, 가수 부분은 0으로 대입된다. <code>bool</code>형에서 <code>double</code>형이 될 때는 <code>true</code>일시 <code>1</code>, <code>false</code>일시 <code>0</code>으로 대입된다.</p>
+</blockquote>
+<ul>
+<li>안전하지 않은 변환<small>(축소 변환)</small></li>
+</ul>
+<p>보통 크기가 큰 타입에서 작은 타입으로 변환될 때 일어난다. 안전하지 않다고 한 것은 데이터가 <b>손실</b>되기 때문이다.</p>
+<blockquote>
+<ul>
+<li>정수형에서 정수형으로</li>
+</ul>
+<p><code>int</code>-&gt;<code>char</code>로 변환될 때는 앞의 3바이트는 짤리고 뒤의 1바이트만 대입된다. <code>int</code>-&gt;<code>bool</code>일 때는 <code>0</code>일 땐 <code>false</code>, 이외의 값이면 <code>true</code>로 변환된다. <code>char</code>-&gt;<code>bool</code>일때도 마찬가지다.<br>
+또한, 부호가 다를 때에는 부호 있는 값에서 없는 값으로 변환된다.</p>
+<ul>
+<li>실수형에서 정수형으로</li>
+</ul>
+<p><code>double</code>에서 <code>int</code>나 <code>char</code>로 변환될 때는 가수 부분은 모두 잘린채로 지수 부분만 대입된다. <code>bool</code>형으로 변환될 때는 <code>0</code>일 땐, <code>false</code>, 이외의 값이면 <code>true</code>로 변환된다.</p>
+</blockquote>
+<p>형 변환을 하는 방법은 다음과 같다.</p>
+<blockquote>
+<center> (타입)변수명 </center>
+<center> 타입(변수명) </center>
+</blockquote>
+<p>변수명엔 값이 들어갈 수 있다.</p>
+<p>특별한 일을 제외하곤 캐스팅은 웬만하면 쓰지 않는 것이 좋다. 특히 축소 변환시 데이터가 손실되어 오류가 나기 쉽기 때문이다. 캐스팅을 쓸 때, 정말 필요한지, 다른 방법은 없는지 고민해보고 사용하자.</p>
+<h4 class="mume-header" id="-&#xC785;&#xCD9C;&#xB825;">- 입출력</h4>
+
+<p>오랜만에 프로그래밍으로 돌아왔다. 이제 변수와 상수, 타입과 형 변환도 알았으니 입력과 출력을 사용할 수 있게 되었다. 오늘은 <code>&lt;stdio.h&gt;</code>에 들어있는 <code>scanf()</code>, <code>printf()</code>를 배워보려 한다. 이 두 함수는 서식에 맞추어 입력 및 출력을 한다. 다음 예제를 보자.</p>
+<pre class="language-c++"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span> <span class="token string">"숫자를 입력하세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"입력한 숫자는 %d입니다.\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>다음 함수들의 구성이 어떻게 되어 있는지 감이 올 것이다.</p>
+<blockquote>
+<center> int printf("형식 문자열", 변수) </center>
+<center> int scanf("형식 문자열", &변수) </center>
+</blockquote>
+<p>난데 없이 <code>&amp;</code>연산자는 무엇일까? 좌변값(lvalue)에 <code>&amp;</code>이 붙이면 해당 객체의 주소값을 참조한다는 의미이다. <code>scanf()</code>는 해당 객체의 주소값이 필요하기 때문이다.</p>
+<p><code>printf()</code>의 형식 문자열엔 표준 출력에 출력될 문자열이 들어가며, 다음과 같은 형식 태그가 있을 수 있다. 형식 태그와 인자의 수는 같거나 많아야 한다.</p>
+<blockquote>
+<center> %[플래그][너비][.소수점][길이]형식자 </center>
+</blockquote>
+<p>하나씩 살펴보자.</p>
+<ul>
+<li>형식자</li>
+</ul>
+<blockquote>
+<p><code>d, i</code> : 부호 있는 정수<br>
+<code>u</code> : 부호 없는 정수<br>
+<code>o</code> : 부호 있는 8진수<br>
+<code>x, X</code> : 부호 있는 16진수<br>
+<code>f</code> : 실수<br>
+<code>e, E</code> : 과학적 지수표기법<br>
+<code>g, G</code> : <code>f</code>와 <code>e, E</code>중 짧은 것을 표기<br>
+<code>c</code> : 문자<br>
+<code>s</code> : 문자열<br>
+<code>p</code> : 주소값<br>
+<code>%</code> : <code>%</code> 자체를 출력</p>
+</blockquote>
+<ul>
+<li>플래그</li>
+</ul>
+<blockquote>
+<p><code>-</code> : 왼쪽 정렬한다. 기본적으로는 오른쪽 정렬이다.<br>
+<code>+</code> : 부호 있는 값에 <code>+</code>나 <code>-</code> 기호를 붙이도록 강제한다. 기본적으로는 음수에만 붙는다.<br>
+<code>#</code> : 형식자 <code>o</code>, <code>x</code>, <code>X</code>와 함께 쓰이면 접두어를 붙인다. 형식자 <code>a</code>, <code>A</code>, <code>e</code>, <code>E</code>, <code>f</code>, <code>F</code>, <code>g</code>, <code>G</code>와 함께 쓰이면 소수점이 없어도 출력하도록 강제한다.<br>
+<code>0</code> : 패딩(padding)을 0으로 채운다.</p>
+</blockquote>
+<ul>
+<li>너비</li>
+</ul>
+<blockquote>
+<p><code>숫자</code> : 최소 <code>숫자</code>만큼 문자가 출력되도록 강제한다. 만약 출력하고자 하는 문자 수가 <code>숫자</code>보다 작다면 부족한 부분은 공백으로 채운다. <code>숫자</code>보다 크다고 해서 문자가 잘리거나 하진 않는다.<br>
+<code>*</code> : 매개변수 리스트에서 숫자를 받아 너비로 사용한다.</p>
+</blockquote>
+<ul>
+<li>소수점</li>
+</ul>
+<blockquote>
+<p><code>.숫자</code> : 정수 형식자에 대해서는 최소한 출력되야하는 숫자를 강제한다. 값이 <code>숫자</code>보다 작다면 0으로 패딩한다. <code>숫자</code>가 <code>0</code>이면 값이 0일시 출력하지 않는다.<br>
+<code>.*</code> : 매개변수 리스트에서 숫자를 받아 소수점으로 사용한다.</p>
+</blockquote>
+<p>길이는 자료형의 길이를 수정하는 데, 우리가 많은 타입을 다루는 것이 아니기 때문에 여기선 특별히 살펴볼 것이 없다. 궁금하다면 레퍼런스 사이트를 참고하길 바란다.</p>
+<p><code>scanf()</code>의 형식 문자열은 이렇다.</p>
+<blockquote>
+<p><b>공백 문자</b>(whitespace character) : 공백 문자가 아닌 것들 이전에 나오는 모든 공백 문자를 무시 한다.<br>
+<b>비 공백 문자</b> : 표준 입력에서 비 공백 문자와 비교하여 같다면 무시하고, 형식 문자열의 다음 문자들을 처리한다. 다르다면, 종료한다. 이 때, 버퍼는 비워지지 않는다.<br>
+<b>형식 태그</b> : %[*][너비][길이]형식자</p>
+</blockquote>
+<p><code>printf()</code>와 다른 점만 설명한다.</p>
+<ul>
+<li>형식자</li>
+</ul>
+<blockquote>
+<p><code>i</code> : 10진수, 8진수, 16진수와 무관하게 모든 정수를 입력받는다.<br>
+<code>X, E, G</code> : 사용하지 않는다. <code>x, e, g</code>가 대신 입력 받는다.</p>
+</blockquote>
+<ul>
+<li>*</li>
+</ul>
+<blockquote>
+<p>해당 형식자로 받아들인 데이터를 읽지만, 무시한다.</p>
+</blockquote>
+<ul>
+<li>너비</li>
+</ul>
+<blockquote>
+<p>읽어올 최대 문자 수를 지정한다.</p>
+</blockquote>
+<ul>
+<li>길이</li>
+</ul>
+<blockquote>
+<p><code>l</code> : <code>double</code>형 값을 읽어올 때에는 이 문자를 붙여야 한다.</p>
+</blockquote>
+<p>꼼꼼한 사람이라면 반환형이 있다는 것을 봤을 것이다. 그럼 대체 무얼 반환하는 것일까? <code>printf()</code>는 성공시 출력된 문자수를 반환한다. 오류가 발생할 시 음수를 반환하게 된다. <code>scanf()</code>는 성공시 성공적으로 입력 받은 수를 반환한다. 오류가 발생할 시 <code>EOF</code>를 반환한다.</p>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 형 변환이란 무엇인가?<br>
+<strong>2.</strong> <code>double</code>에서 <code>int</code>로 변환 시 어떤 일이 일어나는가?<br>
+<strong>3.</strong> 사용자로부터 <code>0</code>과 <code>0x</code>를, 밑수를 나타내는 접두사로 이용해서 8진수나 10진수, 16진수 정수를 여러 번 입력하라는 프롬프트를 출력하는 프로그램을 작성하자. 그리고 입력된 수를 적절히 해석해 10진수로 변환하고, 변환한 값을 다음과 같이 적당히 열 맞춰 출력하자.<br>
+<img src="http://i.imgur.com/wrfBSmS.png" alt="2"><br>
+<strong>4.</strong> 다음을 입력 받아보자.<br>
+<code>12, c, 0.54, 0.36e-3</code></p>
+<hr>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [3. 변수와 상수](#3-변수와-상수)
+	* [- 학습 목표](#-학습-목표)
+	* [- 캐스팅(casting)](#-캐스팅casting)
+	* [- 입출력](#-입출력)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 5[반복문]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="5-&#xBC18;&#xBCF5;&#xBB38;">5. 반복문</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 프로그램에 반복문을 만들 수 있다.<br>
+<strong>2.</strong> break, continue, goto문으로 반복문을 제어할 수 있다.<br>
+<strong>3.</strong> 무작위 값을 만들어 낼 수 있다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xBC18;&#xBCF5;&#xBB38;">- 반복문</h4>
+
+<p>우선, 들어가기 전, 다음과 같이 출력하는 프로그램을 작성해보자.</p>
+<center>
+<img src="http://i.imgur.com/pozgfW5.png">
+</center>
+<p>아마도 여러분은 이런 식으로 짰을 것이다.</p>
+<pre class="language-c++"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"**"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"***"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"****"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"*****"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"******"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"*******"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"********"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"*********"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"**********"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>그럼, 20개를 작성해보라면 어떤 기분이겠는가? 100개는? 1000개는? 사람은 단순하고 반복적인걸 귀찮아 할 뿐더러 실수의 여지가 있다. 반면에, 컴퓨터는 반복적인 일을 실수 없이 아주 빠르게 잘 해낸다. 이번에는 우리의 귀찮음을 줄여 줄 <strong>반복문</strong>(loop statement)을 배우게 된다. 반복문엔 세 가지가 존재한다. <code>for</code>, <code>while</code>, <code>do while</code>. 하나씩 살펴보자.</p>
+<ul>
+<li><code>for</code></li>
+</ul>
+<blockquote>
+  <center>
+  for (초기문; 조건문; 루프문) 구문;
+  </center>
+</blockquote>
+<p><code>for</code>은 보통 '몇 번동안' 반복되는지에 주로 쓰인다. 초기문은 단 한번만 실행되며, 이 구문엔 보통 루프 변수를 초기화한다. 조건문은 해당 조건문이 참이면 계속 실행하고 거짓이면 멈추게 된다. 루프문은 루프 변수를 조작하는 내용이 들어있다.</p>
+<p>순서는 다음과 같다.</p>
+<center>
+<img src="http://cfile9.uf.tistory.com/image/241A385055D53C6D1D5E06">
+</center>
+<p>그럼 한줄에 별 100개를 출력하는 프로그램을 작성해보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//for문 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// 또는 이렇게 쓸 수 있다.</span>
+  <span class="token comment" spellcheck="true">/*
+  for (int i = 1; i &lt;= 100; i += 1)
+  {
+    printf("*");
+  }
+  */</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>반복 횟수를 결정할 때, 저렇게 두 가지로 나눌 수 있다. 잘 알아두자. 여기서 새로운 산술 연산자를 하나 익혀둘 필요가 있다. 바로 전위 증감 연산자이다.</p>
+<blockquote>
+<center> ++i </center>
+<center> --i </center>
+</blockquote>
+<p>이것은 <code>i += 1</code>, <code>i -= 1</code>와 의미적으로 다를 바가 없다. 전위 증감 연산자를 쓰면 좀 더 명확하게 의미가 다가온다. 그럼 한번 바꿔보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//for문 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// 또는 이렇게 쓸 수 있다.</span>
+  <span class="token comment" spellcheck="true">/*
+  for (int i = 1; i &lt;= 100; ++i)
+  {
+    printf("*");
+  }
+  */</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>아까와 전혀 다를 것이 없다.</p>
+<ul>
+<li>중첩 반복문</li>
+</ul>
+<p>자 그럼 처음에 했던 것처럼 별을 출력하려면 어떻게 해야할까? 일단 한번 분석해보자. 줄 수를 1부터 시작한다고 할 때, 각 줄에는 줄 수만큼 별이 출력되고, 개행된다. 그것이 총 10번 반복되는 구조이다. 반복문의 구조가 보이는가? 밑의 코드를 보지 말고 작성해보자.</p>
+<details>
+  <summary> 소스 코드 </summary>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//for문 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+</details>
+<p>이런식으로 구문엔 반복문을 또 집어넣어, 이중, 삼중, 사중 등등 중첩 반복문을 만들 수 있다. 하지만 너무 중첩시킬 경우, 가독성과 성능이 떨어질 수 있다. 루프를 줄일 수 있다면 최대한 줄이고, 줄일 수 없을 경우 함수를 이용하는 방법도 있다.</p>
+<ul>
+<li><code>while</code></li>
+</ul>
+<blockquote>
+<center> while (조건) 구문; </center>
+</blockquote>
+<p>조건이 '참일 동안' 구문을 실행한다. 조건이 거짓이 되면 반복문이 끝난다. 작동 방식은 다음과 같다.</p>
+<center>
+<img src="http://cfile29.uf.tistory.com/image/23451C4955D552CE153D8D">
+</center>
+보통 반복 횟수가 정해져 있지 않거나, 무한 루프 등에 사용한다. 일단, for문 첫번째 예제인 별 100개를 출력하는 프로그램을 `while`을 사용해 작성해보자.
+<pre class="language-c++"><span class="token comment" spellcheck="true">//while 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// while은 초기문이 없다.</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">++</span>i <span class="token comment" spellcheck="true">// 중요. while은 루프문이 없다.</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p><code>while</code>문은 <code>for</code>문과 다르게 초기문과 루프문이 없다는 것을 인지해두자.</p>
+<p><code>while</code>문은 반복 횟수가 일정하게 정해지지 않을 때, 주로 쓰인다는 말 기억하는가? 이번에는 무작위로 별을 출력하게 해보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//while 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span> </span><span class="token comment" spellcheck="true">//rand()를 위함</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> end <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//rand()함수는 0~RAND_MAX까지의 값 중 임의의 값을 반환한다.</span>
+                              <span class="token comment" spellcheck="true">//1 ~ 100까지의 수 중 임의의 수로 초기화한다.</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> end<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">++</span>i
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>한번 실행해보자. 어떤가? 무작위로 실행이 되는가? 일단, 첫번째 예제와 비교해봤을 때, 뭔가 길이가 달라진 것 같다. 한번 다시 실행해보자. 어떤가? 달라졌는가? 별이 너무 많아 구분이 힘들다면 적절히 조건문을 넣어 10개씩 끊어 확인해보자. 그럼 달라지지 않았다는 것을 확인할 수 있다.</p>
+<p>왜냐하면, <code>rand()</code>의 함수 작동 방식이 시드 값에 따라 달라지기 때문이다. <code>rand()</code>는 어떤 수를 그냥 나열해놓고 호출될 때마다 하나씩 하나씩 반환시킨다. 따라서 <code>srand()</code>를 이용해 시드 값을 바꿔줘야 한다. 시드 값은 보통 시스템 시간을 사용한다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//while 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span> </span><span class="token comment" spellcheck="true">//srand(), rand()</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;time.h></span> </span><span class="token comment" spellcheck="true">//time()</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">srand</span><span class="token punctuation">(</span><span class="token function">time</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//현재 시간으로 시드 값을 준다.</span>
+  <span class="token keyword">int</span> end <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0 ~ 99까지의 수 중 임의의 수로 초기화한다.</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> end<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">++</span>i
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이제는 실행할 때마다 계속 다른 결과가 나올 것이다.</p>
+<ul>
+<li><code>do while</code></li>
+</ul>
+<blockquote>
+<center> do {구문;} while(조건); </center>
+</blockquote>
+<p>뒤의 세미콜론을 빼먹지 않도록 주의하자. 작동 방식은 다음과 같다.</p>
+<center>
+<img src="http://cfile27.uf.tistory.com/image/2175744355D55C6D0DA0C7">
+</center>
+<p>앞의 <code>while</code>과 다르게 <code>do while</code>은 무조건 한 번은 작동하게 되어 있다는 걸 인지해두자. 다음과 같은 메뉴 출력에 이용해볼 수 있을 것이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//do while 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">PrintMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">StartGame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">CreateMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">enum</span> Menu <span class="token punctuation">{</span> START_GAME <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> CREATE_MAP<span class="token punctuation">,</span> QUIT <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> input <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">do</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">PrintMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>input <span class="token operator">&lt;</span> START_GAME <span class="token operator">&amp;&amp;</span> input <span class="token operator">></span> QUIT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> START_GAME<span class="token operator">:</span> <span class="token function">StartGame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> CREATE_MAP<span class="token operator">:</span> <span class="token function">CreateMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>                      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">PrintMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"1. 게임 시작"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"2. 맵 만들기"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"3. 종료"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>배달맨 코드를 일부 <small> (완전히는 아니지만) </small> 사용한 것이다. 사용자로부터 입력을 받기 전에 일단 먼저 메뉴창을 출력해야 할 것이다. 입력을 받고 그 입력이 올바른 것인지 판단한다. 올바른 입력이 아니면 다시 메뉴를 출력해야 할 것이다. 이런 구조엔 <code>do while</code>이 제격이다.</p>
+<p>또한, 함수 매크로를 작성하는 데에도 쓰인다. 여기서는 자세히 알아보진 않는다.</p>
+<ul>
+<li>제어하기</li>
+</ul>
+<p>반복을 하다가도 특정 조건이 되면 나가거나, 실행하지 않는 동작이 필요할 때가 있다. 이런 제어를 하기 위한 구문들도 존재한다. <code>break</code>를 이용하면 반복문을 탈출할 수 있고, <code>continue</code>를 이용하면, 다음 루프로 넘어갈 수 있으며, <code>goto</code>를 이용하면 원하는 곳으로 코드 진행을 옮길 수 있다. 예제를 통해 하나하나 살펴보자.</p>
+<blockquote>
+<ul>
+<li><code>break</code></li>
+</ul>
+<p>이미 <code>switch</code>문에서 사용해봤다. 반복문에서도 이 구문을 만나면 멈춘다.</p>
+</blockquote>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//제어 예제 - 1</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">10</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//i가 10이 되면</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//멈춘다.</span>
+<span class="token punctuation">}</span>
+</pre>
+<blockquote>
+<p>이 예제에서의 <code>for</code>문은 본디 100번을 반복하도록 되어 있으나, <code>break</code>문을 이용해 10번만 반복하도록 해놓았다는 걸 볼 수 있을 것이다.</p>
+<ul>
+<li><code>continue</code></li>
+</ul>
+<p><code>continue</code>문은 동작을 정지하는 것이 아니라, 다음 루프로 이동한다. <code>for</code>문에서는 루프문으로 이동하며, <code>while</code>, <code>do while</code>에서는 조건문으로 이동한다.</p>
+</blockquote>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//제어 예제 - 2</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<blockquote>
+<p>이 예제에서는 짝수만 출력하게끔 되어 있다. 홀수면 <code>continue</code> 아래에 있는 구문을 실행하지 않고 루프문으로 이동한다.</p>
+</blockquote>
+<p>다음의 예제를 보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//제어 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">++</span>num2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">++</span>num1<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이 예제는 첫번째 <code>for</code>문에서는 <code>num1</code>을 1씩 증가시키고, 두번째 <code>for</code>문에서는 <code>num2</code>를 1씩 증가시킨다. 자 그럼 여기서 <code>num2</code>가 30이 되었을 때, 모든 반복문을 중지하고 나오도록 프로그램을 작성해보자.</p>
+<p>원하는 바대로 되었는가? <code>printf()</code>를 이용해 각 값들을 출력해서 확인해보자. 아마 잘 안되었을 것이다. 왜냐하면 <code>break</code>문은 단 하나의 반복문만 끝내기 때문이다. 이런 중첩 반복문에서 나갈려면 <code>goto</code>를 사용해야 한다.</p>
+<blockquote>
+<ul>
+<li><code>goto</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<center> goto 레이블; </center>
+</blockquote>
+<p>아까의 예제를 다시 작성해보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//제어 예제 - 4</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>num2 <span class="token operator">==</span> <span class="token number">20</span><span class="token punctuation">)</span>
+        <span class="token keyword">goto</span> EXIT<span class="token punctuation">;</span>
+      <span class="token operator">++</span>num2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">++</span>num1<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+EXIT<span class="token operator">:</span>     <span class="token comment" spellcheck="true">//레이블</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"num1 : %d, num2 : %d\n"</span><span class="token punctuation">,</span> num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이제는 잘 작동한다.</p>
+<p>하지만, <code>goto</code>를 쓸 땐 주의할 점이 있다. 코드 흐름을 절대 앞쪽으로 위치시켜서는 안되며, 중첩 반복시에만 사용해야 한다. <code>goto</code>문을 남발하게 되면 코드의 이해도 어려워지고, 흔히 '스파게티 코드'가 만들어진다. 중첩 반복문을 벗어나는 것이 아니라면 <code>goto</code>문을 쓰지 말자.</p>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 각 반복문 별로 무한반복을 하는 코드를 작성해보자.</p>
+<p><strong>2.</strong> 사용자로부터 특정 수를 입력 받아, 그 수만큼 별을 출력해보자.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">10
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">**********
+</pre>
+<p><strong>3.</strong> FizzBuzz 프로그램을 작성해보라. FizzBuzz는 2의 배수일땐 Fizz를 출력하고, 5의 배수일땐 Buzz를 출력한다. 2와 5의 공배수라면 FizzBuzz를 출력한다. 반복횟수는 100으로 한다.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">1
+Fizz
+3
+4
+Buzz
+Fizz
+7
+Fizz
+9
+FizzBuzz
+11
+Fizz
+... //&#xD6C4;&#xB7B5;
+</pre>
+<p><strong>4.</strong> 7개의 수열 중에서 최소 값과 최대 값을 출력하는 프로그램을 작성해보라.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">6 2 9 8 3 4 7
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">9 2
+</pre>
+<p><strong>5.</strong> 자연수가 입력으로 주어질 때, 이 수의 약수를 출력하고 , 다음 줄에는 약수의 개수 , 다음 줄에는 약수의 총합 , 다음 줄에는 약수의 곱의 일의 자리수를 출력하는 프로그램을 작성해보자. 입력은 1000 이하의 자연수로 한정한다.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">6
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">1 2 3 6
+4
+12
+6
+</pre>
+<hr>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [5. 반복문](#5-반복문)
+	* [- 학습 목표](#-학습-목표)
+	* [- 반복문](#-반복문)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

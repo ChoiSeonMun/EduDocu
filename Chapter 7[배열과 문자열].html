@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 7[배열과 문자열]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="7-&#xBC30;&#xC5F4;&#xACFC;-&#xBB38;&#xC790;&#xC5F4;">7. 배열과 문자열</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 배열 자료구조를 이해하고 사용할 수 있다.<br>
+<strong>2.</strong> 배열과 포인터의 관계를 이해한다.<br>
+<strong>3.</strong> 문자열에 익숙해진다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xBC30;&#xC5F4;">- 배열</h4>
+
+<p>어떤 강의의 수강 학생들의 점수를 분반별로 컴퓨터에 입력하려고 한다. 각 분반엔 50명씩 분포되어 있으며, 이름 순으로 정렬되어 있다고 가정한다. 그렇다면 아마 이런식으로 변수들을 정의할 수 있을 것이다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade01<span class="token punctuation">;</span>
+<span class="token keyword">int</span> grade02<span class="token punctuation">;</span>
+<span class="token keyword">int</span> grade03<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">int</span> grade49<span class="token punctuation">;</span>
+<span class="token keyword">int</span> grade50<span class="token punctuation">;</span>
+</pre>
+<p>한 분반에서만 이정도고, 분반이 여러개가 있다면 정의만 수십줄이 될 것이다. 물론 관리하기 어려운 것은 덤이다. 그러나, 배열을 이용한다면 다음과 같이 한번에 정의할 수 있다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</pre>
+<p>아까보다 가독성도 높고 직관적이다. 또한 관리하기도 왠지 쉬워보인다. 이번 시간에는 배열에 대해서 알아본다.</p>
+<ul>
+<li>선언 및 정의</li>
+</ul>
+<p><strong>배열</strong>(array)이란 같은 자료형들의 묶음이다. 메모리 상으로도 일렬로 쭉 배치되어 있다. 데이터 하나를 <strong>요소</strong>(element)라 하며, <strong>인덱스</strong>(index)를 이용해 각 원소에 접근할 수 있다. 배열 정의는 다음과 같다.</p>
+<blockquote>
+<center> 타입 식별자[상수] </center>
+</blockquote>
+<center>
+<img src="http://www.studytonight.com/c/images/array-declaraction-in-c.jpg" title="&#xBC30;&#xC5F4;&#xC758; &#xBC30;&#xCE58;">
+</center>
+<p>배열은 컴파일 때 크기를 알고 있어야 한다. <code>[]</code>연산자 사이에 '상수'가 들어간다는 것에 유의하자. 상수는 보통 기호상수를 이용한다. 그 편이 코드를 이해하는 데에도 편하고, 후에 배열 크기를 수정할 때에도 편하기 때문이다. 또한, 배열의 인덱스는 0부터 시작한다. 예를 들면, 위의 <code>grade</code> 배열에 접근할 수 있는 인덱스는 0~49까지이다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// ok</span>
+<span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// ok</span>
+<span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// no, out of range</span>
+</pre>
+<ul>
+<li>초기화</li>
+</ul>
+<p>배열의 초기화는 <code>{}</code>연산자를 이용한다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade1<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> grade2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 초기화를 한다면 상수 생략 가능</span>
+<span class="token comment" spellcheck="true">// 컴파일러가 초기화의 갯수에 맞춰 자동으로 배열 크기를 정한다</span>
+<span class="token comment" spellcheck="true">// 이 경우 10</span>
+</pre>
+<p>0으로 초기화를 하고 싶다면 다음과 같이 두 가지가 있다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade1<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> grade2<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<p>보통 두 번째를 많이 봤을 텐데, 첫 번째도 가능하다. 둘 다 눈에 익혀 놓도록 하자. 그럼 다음과 같은 경우는 어떻게 될까?</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade1<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<p>직접 확인해보기 바란다.</p>
+<ul>
+<li>크기 구하기</li>
+</ul>
+<p>배열의 크기는 <code>sizeof</code> 연산자를 이용하면 자료형 x 갯수 만큼의 크기가 나온다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>grade<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 4 byte * 10 = 40</span>
+</pre>
+<p>이 사실을 이용하면 역으로 배열의 요소의 갯수도 구할 수 있을 것이다.</p>
+<ul>
+<li>다차원 배열</li>
+</ul>
+<p>아까와 같은 배열을 1차원 배열이라 한다. 1차원 말고도 2차원, 3차원, 4차원 등 다차원 배열을 정의할 수 있다.</p>
+<blockquote>
+<center> 타입 식별자[n차원 크기][n - 1차원 크기]...[2차원 크기][1차원 크기]; </center>
+</blockquote>
+<p>초기화는 다음과 같다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>                  <span class="token comment" spellcheck="true">//; 주의!</span>
+</pre>
+<center>
+<img src="http://www.studytonight.com/c/images/two-dimensional-array.jpg">
+</center>
+<p>
+<center>
+<b>int a[3][4]</b>
+</center>
+</p>
+<p><code>int a[3][4]</code>에 있을 때, 이런 모양으로 상상해볼 수 있을 것이다. 그렇다면 메모리 상에서는 어떻게 될까? 메모리 상에서도 이런 면 모양으로 저장이 될까? 아니다. 메모리 상에서는 일렬로 쭉 배치되어 있다. 다음의 예제를 디버그 모드에서 확인해보라.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//다차원 배열 예제 - 1</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0으로 초기화</span>
+                       <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                       <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                       <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+  <span class="token keyword">int</span><span class="token operator">*</span> aptr <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 첫 행의 마지막에 위치해 있다.</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                        <span class="token comment" spellcheck="true">//           ↑ aptr</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+  <span class="token operator">++</span>aptr<span class="token punctuation">;</span>               <span class="token comment" spellcheck="true">// 이동</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+                        <span class="token comment" spellcheck="true">//  ↑ aptr</span>
+                        <span class="token comment" spellcheck="true">// {0, 0, 0, 0}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>즉, 다음과 같다.</p>
+<p><img src="http://i.imgur.com/RgWVFCA.png" alt="1"></p>
+<p>이렇다고 <code>a[11] == a[2][2]</code> 인 것은 아니다. 이런 식으로 쓰면 행 단위로 점프한다는 사실을 유념해두자.</p>
+<h4 class="mume-header" id="-&#xBC30;&#xC5F4;&#xACFC;-&#xD3EC;&#xC778;&#xD130;">- 배열과 포인터</h4>
+
+<ul>
+<li>배열의 퇴화</li>
+</ul>
+<p>c/c++에서 배열과 포인터는 긴밀한 관계가 있다. 배열 변수는 배열의 첫 주소를 담고 있기 때문이다. 그래서, <code>grade[2]</code>는 <code>*(grade + 2)</code>와도 동일하다. 포인터에 배열을 담는 것도 가능하다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token operator">*</span> aptr <span class="token operator">=</span> arr<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// &amp;연산자가 없는 것에 주의</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> aptr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 배열을 담고 있는 경우</span>
+                       <span class="token comment" spellcheck="true">// 포인터도 인덱싱으로 접근할 수 있다.</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 40</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>aptr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 4</span>
+</pre>
+<p>당연히 둘의 기본 자료형은 같아야 하고, 단일 포인터에는 1차원 배열만 담을 수 있다. <code>sizeof</code>의 결과값이 다른 것에 유의하라. 배열은 배열 크기 전체가 반환되지만, 포인터는 포인터의 크기가 반환된다. 이렇게 포인터에 배열을 담을 수 있는 것을 배열이 <strong>퇴화</strong>(decay)되었다고 한다.</p>
+<ul>
+<li>매개변수로서의 배열</li>
+</ul>
+<p>이 같은 사실을 이용하면 함수에서 매개변수에 배열로 쓰나, 포인터로 쓰나 동일하다는 사실을 알 수 있다.</p>
+<pre class="language-c++"><span class="token keyword">void</span> <span class="token function">PrintArray</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">PrintArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<p>두 함수는 시그너처는 완전히 같다. 그저 편의상 <code>int[]</code> 형식으로 기술하는 것뿐이다.</p>
+<p>또, 여기서 주목해볼 것은 함수에서 배열을 다루고 싶다면 그 함수의 크기를 같이 넘겨줘야 한다는 것이다. 왜 그런지는 각자가 한번 생각해보도록 하자.</p>
+<ul>
+<li>동적 배열</li>
+</ul>
+<p>아까의 강의 점수 예시를 확장을 해보겠다. 이번엔 분반 별로 학생 수가 모두 다르다고 할 때, 이 학생들의 데이터를 입력받으려면 어떡할 것인가? 각 분반당 최대 학생 수를 100명이라고 하자. 보통 그럼 최대 학생수에 맞춘 배열을 생성할 것이다.</p>
+<pre class="language-c++"><span class="token keyword">int</span> grade<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</pre>
+<p>만약, 들어오는 입력의 갯수가 10개라면? 그럼 나머지 90개의 요소만큼의 메모리가 낭비되는 것이다. 이처럼 정적 배열의 단점은 유연성이 떨어진다는 것이다. 지금 볼 것은 메모리 할당을 통한 <strong>동적 배열</strong>(dynamic array)을 보고자 한다. 다음 예제를 보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//메모리 할당 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span> </span><span class="token comment" spellcheck="true">// for malloc, free</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span><span class="token operator">*</span> arr <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"해당 분반의 학생 수는 몇 명입니까? : "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    arr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 메모리 할당</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"학생들의 점수를 입력해주세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 메모리 해제(반환)</span>
+    arr <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 습관들이는 것이 좋다.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>어떻게 사용하는지 좀 알겠는가? <code>malloc()</code>을 이용해서 메모리 할당을 받는데 <code>sizeof(요소의 타입) * 요소의 갯수</code>만큼 메모리를 할당 받는다. 사용 후에는 반드시 <code>free()</code>를 이용해 해제하자. 그렇지 않으면 <strong>메모리 누수</strong>(leak)가 일어난다. 할당 후에는 정적 배열 사용하듯 사용하면 된다.</p>
+<h4 class="mume-header" id="-&#xBB38;&#xC790;&#xC5F4;">- 문자열</h4>
+
+<p>지금까지는 문자 하나만 다뤄보았다. 이제부터는 문자들의 집합인 문자열을 다뤄보고자 한다. 문자열은 <code>char</code>형의 배열에 지나지 않다. 문자열을 다루는 두 가지 방법을 보고자 한다.</p>
+<ul>
+<li>포인터</li>
+</ul>
+<p>포인터를 이용하면 문자열 리터럴을 가리킬 수 있다. 다음을 보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">// 문자열 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span><span class="token operator">*</span> str <span class="token operator">=</span> <span class="token string">"Hello, World"</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 문자열 출력에는 %s이다.</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>여기서 <code>str</code>은 그저 어딘가에 저장되어 있는 <code>&quot;Hello, World&quot;</code>란 문자열 리터럴을 가리키고 있을 뿐이다. <code>str[1] = 'W'</code>와 같은 쓰기는 할 수 없고 오직 읽기만 가능하다.</p>
+<center>
+<img src="http://i.imgur.com/d9zsNVL.png" title="&#xD3EC;&#xC778;&#xD130;&#xB85C; &#xAC00;&#xB974;&#xD0A8; &#xBB38;&#xC790;&#xC5F4;">
+</center>
+<p>뒤에 이상한 문자가 보인다. 바로 <strong>널 문자</strong>(null character)인데, 이게 있어야 문자열이 언제 끝나는지 컴퓨터가 알 수 있다.</p>
+<ul>
+<li>배열</li>
+</ul>
+<p>이번에는 배열로 문자열을 다루는 것을 살펴보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//문자열 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, World"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 중괄호를 안씌워도 됨!</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>문자열의 초기화에는 중괄호를 안씌워도 괜찮다. 그럼 여기서 <code>str</code>의 크기는 몇일까? 정답은 13이다. 문자 배열에 크기를 명시하는 경우에는 꼭 널 문자를 위한 공간을 뺴먹지 않도록 주의하자.</p>
+<pre class="language-c++"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, World!"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// warning!</span>
+</pre>
+<p>배열을 이용하는 경우에는 읽기 말고도 쓰기도 가능하다.</p>
+<ul>
+<li>문자열 함수</li>
+</ul>
+<p>문자열과 관련된 함수에는 <code>&lt;string.h&gt;</code>에 들어있다. 여기엔 여러가지 함수가 있지만, 그 중 많이 사용되는 함수 몇개만 소개하려 한다.</p>
+<blockquote>
+<ul>
+<li>strcmp : 문자열을 비교하는 함수이다.<br>
+<code>int strcmp(const char* str1, const char* str2)</code></li>
+<li>strcpy : 문자열을 복사하는 함수이다.<br>
+<code>char * strcpy(char * destination, const char * source)</code></li>
+<li>strcat : 문자열을 붙이는 함수이다.<br>
+<code>char * strcpy(char * destination, const char * source)</code></li>
+<li>strlen : 문자열의 크기를 구하는 함수이다.<br>
+<code>size_t strlen(const char * str)</code></li>
+<li>strtok : 문자열을 토큰으로 나눈다.<br>
+<code>char * strtok(char * str, const char * delimiters)</code></li>
+</ul>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> <code>int grade1[10] = { 0, 1, 2 };</code> 에서 <code>grade1</code>의 각 요소 값들을 적어보아라.</p>
+<p><strong>2.</strong> <code>sizeof</code>를 이용해 <code>int grade1[10]</code>의 크기를 구해보아라.</p>
+<p><strong>3.</strong> 왜 배열을 인자로 넘겨줄 때, 크기도 같이 넘겨야 하는가?</p>
+<p><strong>4.</strong> HQ9+ 라는 프로그래밍 언어는 세상에서 가장 간단한 언어이다.</p>
+<p>명령어는 아래와 같다.</p>
+<p>H: 그 유명한 'Hello, world!'라는 문구를 출력시킨다.<br>
+Q: 프로그램 소스를 출력시킨다.<br>
+9: &quot;99 Bottles of Beer on the Wall&quot; 라는 노래의 가사를 출력한다. 하지만 이 문제에서는 &quot;99 Bottles of Beer on the Wall&quot; 만 출력한다.<br>
++: 누산기를 증가시킨다. 이 문제에서는 나오지 않는다.<br>
+여러분이 해야 할 일은 소스 코드를 입력받아 결과를 출력하는 일이다.</p>
+<p><strong>입력</strong></p>
+<blockquote>
+<p>h,q,k 문자가 한 줄에 입력으로 주어진다. 대소문자는 구별하지 않는다.<br>
+문자열의 크기는 25 이하이다.</p>
+</blockquote>
+<p><strong>출력</strong></p>
+<blockquote>
+<p>출력 예의 형식으로 출력한다.</p>
+</blockquote>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">qQqQqQqQ
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+qQqQqQqQ
+</pre>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">9hhq
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">99 Bottles of Beer on the Wall
+Hello, world!
+Hello, world!
+9hhq
+</pre>
+<p><strong>5.</strong> 문자열에 있는 <code>FOO</code>를 모두 <code>OOF</code>로 바꾸는 프로그램을 작성하라. 입력은 총 5개의 대문자 문자열로 주어진다. 각 문자열은 최대 25 크기를 갖는다.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>입력</li>
+</ul>
+<pre class="language-">FOOK
+FOOOOOPLE
+FOKE
+OFOOL
+FOOOO
+</pre>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">OOFK
+OOOOFOPLE
+FOKE
+OOOFL
+OOOOF
+</pre>
+<p><strong>6.</strong> <code>&quot;Alice's Adventures in Wonderland&quot;</code>를 각 단어별로 자르는 프로그램을 작성한다.<br>
+<strong>예시</strong></p>
+<ul>
+<li>출력</li>
+</ul>
+<pre class="language-">Alice&apos;s
+Adventures
+in
+Wonderland
+</pre>
+<hr>
+<h2 class="mume-header" id="&#xC774;&#xBBF8;&#xC9C0;-&#xCD9C;&#xCC98;">이미지 출처</h2>
+
+<ol>
+<li>배열 이미지 : <a href="http://www.studytonight.com/c/arrays-in-c.php">http://www.studytonight.com/c/arrays-in-c.php</a></li>
+</ol>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [7. 배열과 문자열](#7-배열과-문자열)
+	* [- 학습 목표](#-학습-목표)
+	* [- 배열](#-배열)
+	* [- 배열과 포인터](#-배열과-포인터)
+	* [- 문자열](#-문자열)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+<li><a href="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%9C%EC%B2%98">이미지 출처</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

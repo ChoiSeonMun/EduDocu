@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 2[변수와 상수]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="2-&#xBCC0;&#xC218;&#xC640;-&#xC0C1;&#xC218;">2. 변수와 상수</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 변수와 상수의 개념을 이해한다.<br>
+<strong>2.</strong> 타입과 연산자에 대해서 이해한다.<br>
+<strong>3.</strong> 연산자 우선순위에 대해서 이해한다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xBCC0;&#xC218;">- 변수</h4>
+
+<p>변수란, 국어사전을 보면</p>
+<pre class="language-">1. &#xC5B4;&#xB5A4; &#xC0C1;&#xD669;&#xC758; &#xAC00;&#xBCC0;&#xC801; &#xC694;&#xC778;.
+2. &lt;&#xC218;&#xD559;&gt; &#xC5B4;&#xB5A4; &#xAD00;&#xACC4;&#xB098; &#xBC94;&#xC704; &#xC548;&#xC5D0;&#xC11C; &#xC5EC;&#xB7EC; &#xAC00;&#xC9C0; &#xAC12;&#xC73C;&#xB85C; &#xBCC0;&#xD560; &#xC218; &#xC788;&#xB294; &#xC218;.
+</pre>
+<p>라고 정의되어 있다. 그럼 프로그램에서 변수란 무슨 뜻일까?</p>
+<p>우리는 컴퓨터를 사용할 때 여러가지 데이터를 읽거나 쓴다. 그럼 이 데이터는 어디에 쓰이는 것이며, 어디서부터 불러오는 것일까? 바로 메모리이다. <strong>변수</strong>(variable)는 이 메모리에 이름을 붙여주는 것과 같다. 혹, <strong>객체</strong>(object)라고도 한다. 우리는 이 변수를 통해 메모리의 주소를 직접 외우지 않아도 사용할 수 있게 된다. 상술한 뜻을 통해 유추할 수 있듯, 변수 안에 들어가는 값은 가변성을 지닌다. 변수는 이렇게 선언 및 정의한다.</p>
+<blockquote>
+<center> 타입 변수명;</center>
+</blockquote>
+<p>가령 <code>int a;</code>와 같은 것이다. 또한 <code>,</code> 연산자를 이용해, 같은 타입에 대한 변수를 여러 개 선언 및 정의할 수도 있다. <code>int b, c;</code>는 <code>int</code>형 변수 <code>b</code>, <code>c</code>를 선언 및 정의한다는 얘기이다. 타입에 대해서는 후술되어 있다.</p>
+<p>변수를 사용할 때에는 <strong>초기화</strong>(initialization)를 꼭 해주는 것이 좋다. 초기화란 변수를 정의할 때 값을 지정해주는 것을 말한다. <code>int a = 10</code>을 해주면 <code>a</code>라는 변수는 만들어지면서 <code>10</code>의 값을 갖게 된다.</p>
+<p>그럼 미초기화 된 변수엔 어떤 값들이 들어있을까? 바로 <strong>쓰레기 값</strong>(garbage)이 들어가 있게 된다. 왜 초기화하는 습관을 들어야 하냐면 이 쓰레기값을 행여나 어디서 읽게 되면 프로그램이 <strong>미정의 동작</strong>(undefined behavior)을 일으키게 되기 때문이다. 변수 사용시엔 꼭 초기화하자.</p>
+<ul>
+<li>식별자(identifier) 명명 규칙</li>
+</ul>
+<p>프로그램에서는 여러가지 이름들을 식별자라고 부른다. 변수명도 식별자 중 하나이다. 식별자의 규칙은 다음과 같다.</p>
+<blockquote>
+<ol>
+<li>식별자의 첫 문자엔 알파벳 또는 <code>_</code>를 쓸 수 있다. 알파벳은 대소문자를 구별한다.</li>
+<li>두번째 문자부터는 알파벳, <code>_</code>, 숫자를 쓸 수 있다.</li>
+<li>키워드를 식별자로 쓸 수 없다. 키워드는 <code>return</code>, <code>int</code> 등과 같은 것들을 말한다.</li>
+</ol>
+</blockquote>
+<p>VS에서는 키워드를 채색해주므로, 식별자로 키워드를 쓰는 실수는 없을 것이다.</p>
+<p>좋은 식별자를 쓰려면 다룰 자료와 관련된 유의미한 이름을 지어주는 것이 좋다. 가령 <code>int age</code>같은 것들이다. 그렇다보니 식별자의 길이가 길어지는 일이 허다한 데, 단어를 구분하기 위해 여러가지 방법들이 있다. 스네이크 케이스(snake_case), 카멜 케이스(camelCase), 파스칼 케이스(PascalCase) 등이다.</p>
+<h4 class="mume-header" id="-&#xC0C1;&#xC218;">- 상수</h4>
+
+<p><strong>상수</strong>(constant)는 변수와 반대되는 변하지 않는 값을 일컫는다. 변수 선언시 타입 앞쪽 혹은 뒤쪽에 <code>const</code> 키워드를 붙여주면 된다. 예를 들면 <code>const int a</code>, <code>int const b</code>이다. 상수는 꼭 <b>초기화</b>를 해야한다. 그렇지 않으면 컴파일러 오류가 난다.</p>
+<ul>
+<li>리터럴과 기호상수</li>
+</ul>
+<p><strong>리터럴</strong>(literal)이란, 고정된 값을 의미한다. <code>100</code> <code>1.54</code> 등과 같은 것들이다. 이 리터럴을 그냥 사용한다면 그 당시는 알 수 있을지 모르나, 다시 봤을 땐 모를 수도 있고, 다른 사람은 유추하기 힘들 수도 있다. 사람은 숫자보다 문자, 기호에 능하기 때문에 어떤 기호를 붙여주는 것이 가독성도 높고 의미를 유추하기에도 편할 것이다. 그 방법은 <code>#define</code>을 통해서 할 수 있다. 사용 방법은 다음과 같다.</p>
+<blockquote>
+<center> #define 기호 리터럴 </center>
+</blockquote>
+<p>어디선가 많이 본 것 같지 않은가? 그렇다. <code>#include</code>처럼 전처리기이다. 컴파일 전 모든 기호가 리터럴로 바뀐다.</p>
+<ul>
+<li>유효범위</li>
+</ul>
+<p><strong>유효범위</strong>(scope)는 변수가 유효한 범위를 말한다. 즉, 사용할 수 있는 범위를 얘기한다. 사실 여러가지가 있지만, 크게 두 가지로 살펴보려 한다.</p>
+<blockquote>
+<ul>
+<li>전역 범위</li>
+</ul>
+<p>어떤 변수가 전역 범위를 가진다는 것은 모든 곳에서 그 변수를 볼 수 있다<small>(사용할 수 있다)</small>는 것을 의미한다. 다음 예제를 보자.</p>
+</blockquote>
+<pre class="language-c++"><span class="token keyword">int</span> gGlobalVariable<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 자동으로 0으로 초기화 된다.</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  gGlobalVariable <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2를 대입</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<blockquote>
+<p>전역 변수는 다른 파일에서까지 볼 수 있다. 다른 파일에서 <code>extern</code> 키워드를 붙여 변수를 '선언'하면 쓸 수 있다.</p>
+<ul>
+<li>지역 범위<br>
+어떤 변수가 지역 범위를 가진다는 것은 그 지역에서만 변수를 볼 수 있다는 것을 의미한다. 다음 예제를 보자.</li>
+</ul>
+</blockquote>
+<pre class="language-c++"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> localVariable<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 지역 변수는 미초기화시 쓰레기 값을 가짐</span>
+  <span class="token punctuation">{</span>                     <span class="token comment" spellcheck="true">//이런 것을 블록(block)이라고 한다.</span>
+    <span class="token keyword">int</span> localVariable<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 이런 것을 '가리우기(shadowing)'이라고 한다.</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<blockquote>
+<p>지역 범위를 가지는 변수는 그 지역을 벗어나는 순간 소멸된다.</p>
+</blockquote>
+<h4 class="mume-header" id="-&#xD0C0;&#xC785;">- 타입</h4>
+
+<p>컴퓨터의 모든 데이터는 메모리에 저장된다고 하였다. 그리고 그 메모리는 모두 0과 1로 이루어져 있다. 그럼 이 0과 1로 된 전기적 신호를 컴퓨터는 어떤게 구분할 수 있을까? 바로 <strong>타입</strong>(type), 우리말로는 `형`을 통해서 구분하게 된다. 컴퓨터는 타입을 통해 어떤 것을 표현하는지, 그에 대한 적용되는 연산자는 어떤 것들인지를 파악하게 된다. 그럼 어떤 타입들이 있는지 한번 알아보자.</p>
+<p>모든 타입을 다루진 않고, 주로 쓰이는 타입만 나열해보면 이렇다.</p>
+<center>
+<img src="http://i.imgur.com/UeCu3cz.png">
+</center>
+하나씩 살펴보자.
+<ul>
+<li>정수형</li>
+</ul>
+<p>정수를 표현하는 타입이다. 부호 있는 타입과 없는 타입으로 나뉘는데 이는 단지 부호 없는 타입에 <code>unsigned</code> 키워드를 붙여주냐 아니냐 뿐이다.</p>
+<blockquote>
+<ul>
+<li><strong>부호 있는 타입</strong></li>
+</ul>
+<p>우선 <code>int</code>를 살펴보자. <code>int</code>는 정수를 표현하는 데 주로 쓰이는 자료형이며 최소 크기는 -32768~32767이다. 이는 1바이트가 8비트인 환경에서 2바이트의 크기를 갖는 것과 동일하다.(앞으로 나오는 바이트의 크기는 모두 8비트로 가정한다.) 하지만 대부분 <code>int</code>의 크기를 4바이트로 설정해놓고 있다.</p>
+<p><code>char</code>는 엄밀히 얘기하면 아주 작은 정수를 표현하는 <code>signed char</code>, 문자를 표현하는 <code>char</code>로 나눌 수 있다. <code>signed char</code>의 최소 크기는 -128~127까지이고, 이는 1바이트 크기와 같다. <code>char</code>는 컴파일러 환경에 따라 <code>signed char</code>나 <code>unsigned char</code>와 같다.</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>부호 없는 타입</strong></li>
+</ul>
+<p>부호 없는 타입에 <code>unsigned</code> 키워드를 붙여준 것과 <code>bool</code>형으로 나뉜다. 부호 없는 타입의 크기는 0부터 시작하므로 <code>unsigned char</code>의 최소 표현 범위의 경우 0~255, <code>unsigned int</code>의 경우 0~65535이다.</p>
+<p><code>bool</code>형은 무엇일까? <code>bool</code>형은 참과 거짓을 구분하는 타입이다. 크기 제한은 없지만 보통 1바이트로 표현한다. <code>bool</code>형은 참을 의미하는 <code>true</code>나 거짓을 의미하는 <code>false</code>만 들어갈 수 있다.</p>
+</blockquote>
+<ul>
+<li>실수형</li>
+</ul>
+<p>실수를 표현하는 타입이다. 다른 말로는 부동소수점형이라고도 한다. 주로 배정밀도를 가진 <code>double</code>형이 쓰인다. <code>double</code>형은 지수와 가수 부분을 갖게 되는데, 지수 부분은 정수 부분을 뜻하고, 가수는 소수 부분을 뜻한다. 크기는 8바이트이며, 소수점은 15자리까지 표현이 가능하다.</p>
+<center>
+<img src="http://prof.dongju.ac.kr/syhong/public_html/teaching/c/imgbook/3-5.gif">
+</center>
+<center>
+<b>지수와 가수</b>
+</center>
+<h4 class="mume-header" id="-&#xC5F0;&#xC0B0;&#xC790;">- 연산자</h4>
+
+<p>연산자는 산술, 비교/관계, 논리, 비트, 복합 대입, 멤버와 포인터, 기타 연산자로 나뉜다. 모든 것을 살펴보진 않고 최소한만 배운 후 그때그때 맞춰 배우도록 하겠다.</p>
+<blockquote>
+<ul>
+<li><strong>산술 연산자</strong></li>
+</ul>
+<p>산술 연산자는 우리가 알고있는 <code>+-*/</code>에 <code>%(나머지modular)</code>가 있다. 이러한 연산자는 피연산자를 두 개 가지며, 나머지 연산자를 제외하면, 상술한 모든 타입에 쓸 수 있다. <code>+</code>, <code>-</code>는 양수, 음수를 표현할 때 단항으로도 쓰일 수 있다. 특이한 경우만 살펴보자.</p>
+<blockquote>
+<ol>
+<li><code>/</code>연산자가 피연산자로 정수 두 개를 가질 때에는 몫을 반환한다. 예를 들어, <code>5/2</code>라면 <code>2</code>를 반환하는 것이다.</li>
+<li><code>%</code>연산자는 오직 피연산자로 정수 두 개만 가질 수 있는데, 나누고 난 나머지를 반환한다. 예를 들어 <code>5%2</code>라면 <code>1</code>을 반환하는 것이다.</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>비교/관계 연산자</strong></li>
+</ul>
+<p>비교/관계 연산자는 비교 관계를 따지는 연산자이다. 피연산자가 두 개 필요하다. <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>==</code>, <code>!=</code>가 있다. <code>bool</code> 값을 반환한다.</p>
+<ul>
+<li><strong>논리 연산자</strong></li>
+</ul>
+<p>논리 연산자는 <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>로 나뉜다. <small> (논리적 NOT 연산자를 제외하고) </small> 피연산자가 두 개 필요하며, <code>bool</code> 값을 반환한다. 논리적 합과 곱 연산자는 단축 평가를 하게 된다.</p>
+<!--- 단축평가란? --->
+<ul>
+<li><strong>비트 연산자</strong></li>
+</ul>
+<p>비트 수준을 다루게 해주는 연산자이다. <code>&lt;&lt;</code>, <code>&gt;&gt;</code>와 같은 시프트(shift) 연산과 <code>&amp;</code>, <code>|</code>, <code>^(xor)</code>, <code>~(not)</code> 연산자로 이루어진다. <small> (비트 NOT 연산자를 제외하고) </small> 모두 피연산자가 두 개 필요하다. 부호 없는 정수형에 많이 이용된다.</p>
+<ul>
+<li><strong>복합 대입 연산자</strong></li>
+</ul>
+<p>복합 대입 연산자는 아까 얘기한 산술 연산자와 비트 연산자(비트 not은 제외)에 <code>=(대입assign)</code> 연산자를 합친 것이다. 가령 <code>+=</code>와 같은 것들이다. <code>=</code>의 역할은 왼쪽 피연산자에 오른쪽 피연산자의 값을 대입한다. <code>a=10</code>이라면 <code>a</code>에 <code>10</code>이라는 값이 들어가는 것이다.</p>
+</blockquote>
+<p>나머지 두 분야는 뒤에 가서 배우도록 하겠다.</p>
+<ul>
+<li>연산자 우선순위</li>
+</ul>
+<p>우리가 수학 문제 풀 때도 아무 순서대로 풀진 않는다. 즉 <code>2+3*2</code>가 있을 때, <code>3*2</code>를 먼저 하고, <code>2</code>를 더하게 된다. 이렇듯 각 연산자들끼리에도 먼저 수행해야 될 순서들이 있다. 순서는 다음과 같다.</p>
+<center>
+<img src="http://i.imgur.com/4Dfeilh.png">
+</center>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 변수와 상수는 무엇인가?<br>
+<strong>2.</strong> 쓰레기 값을 읽으면 어떤 일이 일어나는가?<br>
+<strong>3.</strong> 식별자 명명 규칙에 대해서 설명해보아라.<br>
+<strong>4.</strong> 타입이란 무엇인가?<br>
+<strong>5.</strong> 부호 없는 정수형 변수 <code>val</code>을 선언해보아라.<br>
+<strong>6.</strong> 원주율을 기호상수로 표현해보자<br>
+<strong>7.</strong> 선언과 정의의 차이는 무엇인가?</p>
+<hr>
+<h2 class="mume-header" id="&#xC774;&#xBBF8;&#xC9C0;-&#xCD9C;&#xCC98;">이미지 출처</h2>
+
+<ol>
+<li>지수와 가수 : <a href="http://prof.dongju.ac.kr/syhong/public_html/teaching/c/c03.htm">http://prof.dongju.ac.kr/syhong/public_html/teaching/c/c03.htm</a></li>
+<li>연산자 우선 순위 : <a href="https://msdn.microsoft.com/ko-kr/library/2bxt6kc4.aspx">https://msdn.microsoft.com/ko-kr/library/2bxt6kc4.aspx</a></li>
+</ol>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [2. 변수와 상수](#2-변수와-상수)
+	* [- 학습 목표](#-학습-목표)
+	* [- 변수](#-변수)
+	* [- 상수](#-상수)
+	* [- 타입](#-타입)
+	* [- 연산자](#-연산자)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+<li><a href="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%9C%EC%B2%98">이미지 출처</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 6[함수와 포인터]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="6-&#xD568;&#xC218;&#xC640;-&#xD3EC;&#xC778;&#xD130;">6. 함수와 포인터</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 함수의 동작 원리를 이해하고, 작성할 수 있다.<br>
+<strong>2.</strong> 포인터의 개념을 이해한다.<br>
+<strong>3.</strong> 포인터를 통해 메모리 사용을 이해한다.<br>
+<strong>4.</strong> 참조자를 이해한다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xD568;&#xC218;function">- 함수(function)</h4>
+
+<p>우리는 이제까지 몇 개의 함수를 사용해보았다. 첫 시간에는 시그너쳐에 대해서도 살펴보았다. 함수란 단지, 일련의 루틴에 이름을 붙여준 것에 불과하다. 라이브러리 함수 말고도 우리가 직접 함수를 작성할 수도 있다는 것을 조건문 시간에 살펴보기도 했다. 자 그럼, 못다했던 함수 얘기를 마저 마무리 지으려고 한다.</p>
+<p>까먹은 사람들을 위해 다시 한번 함수의 구조로 돌아가보고 찬찬히 살펴보도록 하자. 우선 어떤 함수의 시그너처란 것은 반환타입과 매개변수 목록을 의미하는 것이다. 시그너처는 함수의 타입이라고도 볼 수 있다.</p>
+<blockquote>
+<center> 반환타입 함수명(매개변수 목록) { 함수 본체 } </center>
+</blockquote>
+<ul>
+<li>반환형</li>
+</ul>
+<p>해당 루틴이 끝나고 피호출자에게 돌려주는 값의 타입이다. 예를 들면, <code>Factorial</code>이라는 함수가 있다고 하자. 이 함수는 어떤 값을 인자로 받아 그 팩토리얼의 값을 반환한다. 그러니까 <code>2</code>를 주면 <code>2!</code>를 반환하게 되는 것이다. 따라서 이 함수는 적절한 반환형을 적어주어야 한다. 함수에 따라선 반환형이 없을 수도 있으며 없을 시에는 <code>void</code>를 적어주면 된다. 반환값이 있다면 <code>return</code>문을 이용해 반환할 수 있으며, 결과값은 반환형으로 변환이 될 수 있어야한다.</p>
+<ul>
+<li>함수명</li>
+</ul>
+<p>함수이름이다. 식별자 명명 규칙을 따른다. 시그너쳐만 다르다면<small>(반환형 제외)</small> 같은 이름으로 쓸 수 있다.</p>
+<pre class="language-c++"><span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token keyword">void</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token keyword">int</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//wrong.</span>
+</pre>
+<p>이를 <strong>오버로딩</strong>(overloading)이라고 한다.</p>
+<ul>
+<li>매개변수(parameter) 목록</li>
+</ul>
+<p>매개변수라는 것은 그 함수 내에서 쓰이는 변수를 말한다. <code>Factorial</code>함수에서는 정수 값 하나를 받는다고 하였다. 따라서 <code>int Factorial(int num)</code>이 될 것이다. 매개변수를 초기화 시켜주는 값을 <strong>인자</strong>(argument)라 한다. 함수의 기본 동작은 '복사'이기 때문에 매개변수가 변화했다고 인자가 변하는 것은 아니다. 이를 일컬어 'call by value' 혹은 'pass by value'라고 한다.</p>
+<ul>
+<li>함수 본체</li>
+</ul>
+<p>함수가 실행되는 본문이다.</p>
+<p>구구단을 출력하는 함수를 실제 작성해 가면서 함수 작성을 이해해보자. 아래 예제는 1단부터 9단까지 출력하는 프로그램이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//함수 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d단\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d x %d = %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> i <span class="token operator">*</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"-------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>만일 사용자로부터 입력을 받아 특정 단만 출력하려고 하면 어떻게 해야 할까? 이렇게 적을 수 있을 것이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//함수 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"출력하고자 하는 단수를 입력하세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d단\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d x %d = %d\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">,</span> j<span class="token punctuation">,</span> num <span class="token operator">*</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"-------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>이 과정에 이름을 붙여 가독성을 높이고, 유지보수를 쉽게 하려고 한다. 함수명은 <code>PrintGugu</code>로 한다. 딱히 돌려줄 반환값이 없기 때문에 반환 타입은 <code>void</code>로 하고, 매개변수로는 정수값 하나를 받는다. 이렇게 해서 만든 함수는 다음과 같을 것이다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//함수 예제 - 3</span>
+<span class="token keyword">void</span> <span class="token function">PrintGugu</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d단\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d x %d = %d\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">,</span> j<span class="token punctuation">,</span> num <span class="token operator">*</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"-------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>호출 방법은 다음과 같다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//함수 예제 - 4</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"출력하고자 하는 단수를 입력하세요."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">PrintGugu</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>함수 호출시 유의해야 할 것은 호출 전 정의를 해놓거나, 전방 선언 후 정의를 따로 구현해야 한다는 것이다.</p>
+<h4 class="mume-header" id="-&#xD3EC;&#xC778;&#xD130;pointer">- 포인터(pointer)</h4>
+
+<ul>
+<li>선언 및 정의</li>
+</ul>
+<p>영어단어 'point'에는 '~를 가리키다'라는 뜻이 있다. 'pointer'라는 이름은 거기에 접두사 'er'이 붙은 것 밖에 없다. 즉, 무언가를 가리키는 녀석이라는 것이다. 포인터 변수는 주소값을 담는 변수인데, 이 주소를 가지고 간접적으로 접근할 수 있기 때문에 이러한 이름이 붙은 것이다. 선언 방법을 보자.</p>
+<blockquote>
+<center> 타입 * 식별자 <center>
+</center></center></blockquote>
+<p>이 뜻은 해당 타입 객체의 '주소를 담는 포인터 변수라는 뜻이다.선언하는 스타일은 사람마다 다른데 다음과 같이 세 가지가 있다. <code>int *ptr</code>, <code>int* ptr</code>, <code>int * ptr</code>. 여기서는 두 번째 형식을 쓰도록 하겠다.</p>
+<p>포인터 변수의 크기는 운영체제에 따라 다르다. 32비트 운영체제에서는 4바이트 만큼의, 64비트 운영체제에서는 8바이트 만큼의 크기를 갖는다.</p>
+<p>포인터는 메모리와 직접적으로 상호작용하기 때문에 다양한 일을 할 수 있게 된다. 하지만, 그만큼 쓰는데 충분한 주의가 필요하다. 그렇지 않으면 프로그램이 망가지게 된다.</p>
+<p>
+<center>
+<img src="http://cfs10.tistory.com/original/16/tistory/2009/06/24/15/07/4a41c2a267496">
+</center>
+<center> <b>이런게 다 포인터 오류로 인해서 생기는 것이다.</b> </center> </p>
+<ul>
+<li>간접참조 연산자</li>
+</ul>
+<p><code>*</code> 연산자는 간접참조(indirection or dereferencing) 연산자라고 한다. 이 연산자로 포인터에 담겨진 객체의 내용을 변경할 수 있다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">// 포인터 예제 - 1</span>
+<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token operator">*</span> pti <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// pti : pointer to int</span>
+               <span class="token comment" spellcheck="true">// &amp;연산자로 객체의 주소값을 준다는 것을 인지하자</span>
+<span class="token operator">*</span>pti <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// a의 값은 20으로 변하게 된다.</span>
+</pre>
+<p>포인터 변수의 타입은 가리키는 타입과 반드시 일치해야 한다.</p>
+<ul>
+<li>초기화</li>
+</ul>
+<p>포인터 변수의 초기화는 어떤 변수의 주소값으로 초기화한다. 아무것도 가리키지 않을 때에는 <code>0</code>, <code>NULL</code>, <code>nullptr</code>을 이용해 초기화하면 된다. 아무것도 가리키지 않는 포인터를 간접참조하면 런타임 에러가 발생한다.</p>
+<ul>
+<li>주소 연산</li>
+</ul>
+<p>포인터에 적용할 수 있는 연산은 <code>+, -, 증감연산자</code>이다. 피연산자로는 정수 값을 받는다. 이 연산들은 해당 포인터들을 이동시킨다.</p>
+ <center>
+ <img src="data:image/png;base64,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" width="400">
+ </center>
+<ul>
+<li>함수와의 관계</li>
+</ul>
+<p>포인터는 간접 참조할 수 있다는 특징 때문에 함수 내에서 원본을 조작할 때 이용되기도 한다. 예를 들어, 두 정수를 바꾸는 <code>swap</code>이라는 함수가 있다고 해보자.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//포인터 예제 - 2</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> lval<span class="token punctuation">,</span> <span class="token keyword">int</span> rval<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 틀림</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> temp <span class="token operator">=</span> lval<span class="token punctuation">;</span>
+  lval <span class="token operator">=</span> rval<span class="token punctuation">;</span>
+  rval <span class="token operator">=</span> temp<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 원본과 매개변수는 다른 값이다.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> val2 <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 전 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10 20</span>
+  <span class="token function">swap</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 후 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10 20</span>
+                                                    <span class="token comment" spellcheck="true">//변함이 없다.</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>원래 함수의 '값으로 전달'방식으로는 도저히 구현할 수가 없다. 하지만 매개변수에 포인터를 쓰면 가능하다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//포인터 예제 - 3</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> lval<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> rval<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>lval<span class="token punctuation">;</span>
+  <span class="token operator">*</span>lval <span class="token operator">=</span> <span class="token operator">*</span>rval<span class="token punctuation">;</span>
+  <span class="token operator">*</span>rval <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> val2 <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 전 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10 20</span>
+  <span class="token function">swap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>val1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//주소값을 넘겨준다!</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 후 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//20 10</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>주소값을 전달한다는 점을 명심하자.</p>
+<p>이러한 특성을 이용해 여러 개의 반환값을 돌려주는 것도 가능하다. <code>int foo(int, int*)</code>와 같은 함수로 보자면, <code>foo()</code>의 반환값과 두번째 매개변수 <code>int*</code>을 이용해 두개의 반환값을 돌려주게 되는 것이다.</p>
+<ul>
+<li>상수성</li>
+</ul>
+<p>변수에 <code>const</code> 기호를 붙이면 상수성을 부여할 수 있다는 것을 기억하는가? 포인터도 마찬가진데, 포인터는 두 부분에 상수성을 줄 수 있다.</p>
+<blockquote>
+<ul>
+<li>상위 const</li>
+</ul>
+<p>가리키는 '주소값'에 상수성을 부여하는 것이다. 즉, 여기에 상수성을 부여시키면 연산이 불가능하다. 한번 가리킨 대상은 변수가 소멸될 때까지 그 곳만 가리키게 된다. 선언 방식은 <code>type* const</code>이다. 간접참조 연산자 뒤에 <code>const</code>를 붙이다는 것에 유의하자.</p>
+<ul>
+<li>하위 const</li>
+</ul>
+<p>가리키는 '타입'이 상수임을 알리는 것이다. 주소 연산은 가능하다. 선언 방식은 <code>const type*</code> 혹은 <code>type const*</code>이다.</p>
+</blockquote>
+<p>당연히 상위 하위 둘 다에 상수성을 부여할 수 있다.</p>
+<ul>
+<li>함수 포인터</li>
+</ul>
+<p>함수를 가리키는 포인터도 선언할 수 있다. 함수의 시그너쳐를 이용하면 된다. 가령 <code>void foo(int, int)</code>라는 함수를 가리키는 포인터는 <code>void (*fptr)(int, int)</code>이다. 눈치 챈 사람도 있겠지만, 함수 선언에서 이름 대신 포인터 선언으로 바뀐 것 밖에 없다.</p>
+<h4 class="mume-header" id="-&#xCC38;&#xC870;&#xC790;">- 참조자</h4>
+
+<ul>
+<li>선언 및 정의</li>
+</ul>
+<p><strong>참조자</strong>(reference)는 상수 포인터라고 볼 수 있다. 초기화가 필요하고, 초기화를 하면 일반 변수 쓰듯 자유롭게 쓸 수 있다. 선언 및 정의 방법은 다음과 같다.</p>
+<blockquote>
+<center> 타입 & 식별자 </center>
+</blockquote>
+<p>앞의 <code>swap()</code>을 참조자를 이용해 동일한 기능을 하지만 다른 모양을 지닌 녀석으로 바꿔보겠다.</p>
+<pre class="language-c++"><span class="token comment" spellcheck="true">//참조자 예제 - 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> lval<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> rval<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> temp <span class="token operator">=</span> lval<span class="token punctuation">;</span>
+  lval <span class="token operator">=</span> rval<span class="token punctuation">;</span>
+  rval <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> val1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> val2 <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 전 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10 20</span>
+  <span class="token function">swap</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//주소값을 넘겨주지 않아도 된다!</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"swap()호출 후 값 : %d, %d\n"</span><span class="token punctuation">,</span> val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//20 10</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>일단 보다시피 간접참조 연산자가 사라졌다. 또한, 호출할 때도 주소 연산자를 쓸 필요가 없다. 하지만 참조자는 내장 타입을 위해서라기 보다 나중에 배울 클래스를 위해 고안된 것이라는 것을 알아두길 바란다.</p>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 매개변수와 인자의 차이점은 무엇인가?</p>
+<p><strong>2.</strong> 저번 시간에 과제로 풀었던 문제들을 함수로 풀어보라.</p>
+<p><strong>3.</strong> 다음 함수의 잘못된 점이 있다면 고치고, 왜 그렇게 고쳤는지 이유를 설명하라.</p>
+<pre class="language-c++"><span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">&amp;</span>temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p><strong>4.</strong> 상위 const와 하위 const가 무엇인지 설명하라.</p>
+<p><strong>5.</strong> 함수 시그너쳐가 <code>int(double, char)</code>일 때, 이 함수를 가리키는 포인터를 정의해보자.</p>
+<hr>
+<h2 class="mume-header" id="&#xC774;&#xBBF8;&#xC9C0;-&#xCD9C;&#xCC98;">이미지 출처</h2>
+
+<ol>
+<li>메모리 이미지 : <a href="http://befreepark.tistory.com/623">http://befreepark.tistory.com/623</a></li>
+<li>주소 연산 : <a href="https://dojang.io/mod/page/view.php?id=509">https://dojang.io/mod/page/view.php?id=509</a></li>
+</ol>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [6. 함수와 포인터](#6-함수와-포인터)
+	* [- 학습 목표](#-학습-목표)
+	* [- 함수(function)](#-함수function)
+	* [- 포인터(pointer)](#-포인터pointer)
+	* [- 참조자](#-참조자)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+<li><a href="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%9C%EC%B2%98">이미지 출처</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>

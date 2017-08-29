@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Chapter 8[구조체와 파일 입출력]</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///C:\Users\CSM\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+
+
+
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+ body {
+   background: url(http://i.imgur.com/zFRiYQf.png) repeat;
+ }
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="8-&#xAD6C;&#xC870;&#xCCB4;&#xC640;-&#xD30C;&#xC77C;-&#xC785;&#xCD9C;&#xB825;">8. 구조체와 파일 입출력</h3>
+
+<h4 class="mume-header" id="-&#xD559;&#xC2B5;-&#xBAA9;&#xD45C;">- 학습 목표</h4>
+
+<blockquote>
+<p><strong>1.</strong> 구조체를 사용할 수 있다.<br>
+<strong>2.</strong> 파일 입출력을 사용할 수 있다.</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="-&#xAD6C;&#xC870;&#xCCB4;">- 구조체</h4>
+
+<ul>
+<li>선언 및 정의</li>
+</ul>
+<p>저번 시간에는 같은 자료형의 묶음인 배열에 대해서 배워보았다. 이번 시간에는 다양한 자료형을 한 데 묶을 수 있는 구조체에 대하여 살펴보겠다. 구조체는 다음과 같이 선언 및 정의한다.</p>
+<blockquote>
+<center> struct 구조체-태그 { 여러 자료형 }; </center>
+</blockquote>
+<p>구조체 정의는 보통 헤더파일에 적는다. 예시로, 학생이라는 구조체를 한번 만들어보도록 하겠다. 학생에는 이름, 학번, 전공, 나이 등이 있을 것이다.</p>
+<pre class="language-c++"><span class="token keyword">struct</span> Student
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span> name<span class="token punctuation">[</span>NAME_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span> ID<span class="token punctuation">[</span>ID_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span> major<span class="token punctuation">[</span>MAJOR_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<p>구조체를 실제로 사용하려면 구조체 변수를 정의해야 한다.</p>
+<pre class="language-c++"><span class="token keyword">struct</span> Student a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// struct 키워드 생략 가능</span>
+</pre>
+<p>C에서는 <code>struct</code> 키워드를 써야 했지만, C++에서는 생략해도 무방하다. 앞으로는 생략하도록 하겠다.</p>
+<ul>
+<li>초기화</li>
+</ul>
+<p>초기화는 <code>{}</code> 연산자를 이용하여 초기화 할 수 있다.</p>
+<pre class="language-c++">Student csm <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"ChoiSeonMun"</span><span class="token punctuation">,</span> <span class="token string">"2014136127"</span><span class="token punctuation">,</span> <span class="token string">"Computer Engineering"</span><span class="token punctuation">,</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<ul>
+<li>접근</li>
+</ul>
+<p>각 데이터는 <code>.</code> 연산자를 이용해서 접근할 수 있다. 예를 들어 <code>csm</code>이 개명이 되었다고 한다면 이런식으로 할 수 있을 것이다.</p>
+<pre class="language-c++"><span class="token function">strcpy</span><span class="token punctuation">(</span>csm<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">"ChoiSeonJoong"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<p>덧붙여, <code>-&gt;</code>연산자도 함께 보면 좋은데, 이는 포인터에서 이용되는 방식이다. 다음을 보자.</p>
+<pre class="language-c++">Student<span class="token operator">*</span> a <span class="token operator">=</span> <span class="token punctuation">(</span>Student<span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>Student<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>a<span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">,</span> <span class="token string">"ChoiSeonMun"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a->name은 (*a).name과 동일</span>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>a<span class="token operator">-</span><span class="token operator">></span>ID<span class="token punctuation">,</span> <span class="token string">"2014136127"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a->ID는 (*a).ID와 동일</span>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>a<span class="token operator">-</span><span class="token operator">></span>major<span class="token punctuation">,</span> <span class="token string">"Computer Engineering"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a->major는 (*a).major와 동일</span>
+a<span class="token operator">-</span><span class="token operator">></span>age <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a->age는 (*a).age와 동일</span>
+<span class="token function">free</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// NULL or 0</span>
+</pre>
+<h4 class="mume-header" id="-&#xD30C;&#xC77C;-&#xC785;&#xCD9C;&#xB825;">- 파일 입출력</h4>
+
+<p>파일 입출력이란 파일로부터 입력을 받거나, 파일로 출력을 하는 것을 의미한다. 사실 이제까지도 여러분들은 인지하지 못했겠지만 파일 입출력을 하고 있었다. 콘솔 창으로 입출력을 했던것은 <code>stdin</code>, <code>stdout</code>으로 입출력을 하는 것과 마찬가지이다. 파일 입출력과 관련된 함수는 무엇이 있고, 어떻게 사용하는 것인지 알아보자.</p>
+<ul>
+<li>파일 포인터</li>
+</ul>
+<p>파일을 사용하려면 <code>&lt;stdio.h&gt;</code>에 있는 <code>FILE</code> 구조체에 대한 포인터를 사용해야한다. 그리고 <code>fopen()</code>을 이용해 파일에 대한 포인터를 얻고 읽기나 쓰기 모드를 지정해줘서 사용하면 된다.</p>
+<pre class="language-c++"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  FILE<span class="token operator">*</span> fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"Hello, File.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">"Hello, File!"</span><span class="token punctuation">,</span> fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fclose</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</pre>
+<p>한 구문씩 살펴보자.</p>
+<pre class="language-c++">FILE<span class="token operator">*</span> fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"Hello, File.txt"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<p>파일 포인터를 정의하고 <code>fopen()</code>함수를 이용해 바로 초기화를 했다. <code>fopen()</code>에는 두 개의 매개변수가 들어가는데, 하나는 파일 이름이고, 다른 하나는 모드이다. 모드는 다음과 같은 것들이 있다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">파일 모드</th>
+<th style="text-align:left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&quot;r&quot;</td>
+<td style="text-align:left">파일을 읽기 전용으로 연다. 단, 파일이 반드시 있어야 한다.</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;w&quot;</td>
+<td style="text-align:left">새 파일을 생성한다. 만약 파일이 있으면 내용을 덮어쓴다.</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;a&quot;</td>
+<td style="text-align:left">파일을 열어 파일 끝에 값을 이어 쓴다. 만약 파일이 없으면 파일을 생성한다.</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;r+&quot;</td>
+<td style="text-align:left">파일을 읽기/쓰기용으로 연다. 단, 파일이 반드시 있어야 하며 파일이 없으면 NULL을 반환한다.</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;w+&quot;</td>
+<td style="text-align:left">파일을 읽기/쓰기용으로 연다. 파일이 없으면 파일을 생성하고, 파일이 있으면 내용을 덮어쓴다.</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;a+&quot;</td>
+<td style="text-align:left">파일을 열어 파일 끝에 값을 이어 쓴다. 만약 파일이 없으면 파일을 생성한다. 읽기는 파일의 모든 구간에서 가능하지만, 쓰기는 파일의 끝에서만 가능하다.</td>
+</tr>
+<tr>
+<td style="text-align:left">t</td>
+<td style="text-align:left">파일을 읽거나 쓸 때 개행문자 \n와 \r\n을 서로 변환한다. ^Z 파일의 끝으로 인식하므로 ^Z까지만 파일을 읽는다.</td>
+</tr>
+<tr>
+<td style="text-align:left">b</td>
+<td style="text-align:left">파일의 내용을 그대로 읽고, 값을 그대로 쓴다.</td>
+</tr>
+</tbody>
+</table>
+<p><code>t</code>나 <code>b</code>는 추가적으로 입력해주는 부분이며, 단독적으로 쓰이지 못한다. 그럼 우리가 쓰기 모드로 열었다는 것을 알 수 있을 것이다. 우리가 불러온 파일은 존재하지 않으므로 새로 생성될 것이다.</p>
+<pre class="language-c++"><span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">"Hello, File!"</span><span class="token punctuation">,</span> fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<p>입출력 함수중 하나이다. 어디선가 많이 본듯하다. 맞다. <code>puts()</code>와 비슷하다. 다만, 매개변수가 하나 더 붙어있고, 이 함수는 뒤에 개행 문자를 붙이지 않는다는 점이 틀리다. 뒤의 매개변수는 파일 포인터를 넣어준다.</p>
+<pre class="language-c++"><span class="token function">fclose</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<p><code>fclose()</code>는 열려 있는 파일을 닫아주는 함수이다. 파일을 닫아주지 않으면 파일에 손상이 일어날 수도 있다. 우리가 메모리 할당을 하면 해제를 하듯이, 꼭 닫아주는 습관을 가지도록 하자.</p>
+<ul>
+<li>파일 관련 함수</li>
+</ul>
+<p>여러가지 함수들이 있지만, 그 중 몇 가지만 살펴본다. 이외의 함수들은 필요하면 직접 레퍼런스 사이트에서 찾아보길 바란다.</p>
+<blockquote>
+<ul>
+<li>fprintf : 서식에 맞춰 파일에 출력하는 함수<br>
+<code>int fprintf ( FILE * stream, const char * format, ... )</code></li>
+<li>fscanf : 서식에 맞춰 파일로부터 입력 받는 함수.<br>
+<code>int fscanf ( FILE * stream, const char * format, ... )</code></li>
+<li>fread : 파일로부터 데이터 블록을 읽는다.<br>
+<code>size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );</code></li>
+<li>fwrite : 파일로 데이터 블록을 쓴다.<br>
+<code>size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );</code></li>
+<li>fseek : 파일 포인터의 위치를 재배치한다.<br>
+<code>int fseek ( FILE * stream, long int offset, int origin )</code></li>
+<li>ftell : 현재 파일 포인터의 위치를 구한다.<br>
+<code>long int ftell ( FILE * stream )</code></li>
+</ul>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="&#xACFC;&#xC81C;">과제</h2>
+
+<p><strong>1.</strong> 텍스트 모드와 바이너리 모드의 차이점은 무엇인가?</p>
+<p><strong>2.</strong> 다음 소스 코드를 완성하여 문자열을 hello.txt 파일로 저장하라.</p>
+<pre class="language-c++"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> s1<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"안녕하세요."</span><span class="token punctuation">;</span>
+
+    FILE <span class="token operator">*</span>fp <span class="token operator">=</span> ①______________________________
+
+    ②______________________________
+
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<p><strong>3.</strong> 파일의 크기를 구하는 함수 <code>int GetFileSize(FILE* fp)</code>을 구현해보라.</p>
+<p><strong>4.</strong> 문자열이 저장된 words.txt 파일이 주어질 때, 파일 처음부터 순방향으로 7바이트 지점에서 4바이트만큼 읽고, 파일 끝에서 역방향으로 6바이트 지점에서 2바이트만큼 읽은 값을 출력하는 프로그램을 작성하라. 단, 읽은 문자열은 공백으로 띄우지 않고 붙여서 출력한다.<br>
+<strong>예시</strong></p>
+<ul>
+<li>words.txt</li>
+</ul>
+<pre class="language-">Hello, world!
+</pre>
+<ul>
+<li>실행 결과</li>
+</ul>
+<pre class="language-">worlwo
+</pre>
+<p><strong>5.</strong> choiseonmun.bin 파일로부터 <code>Student</code> 구조체를 불러들여 <code>stdout</code>으로 출력해보라.</p>
+<p><strong>예시</strong></p>
+<ul>
+<li>choiseonmun.bin</li>
+</ul>
+<pre class="language-">choiseonmun
+2014136127
+Computer Engineering
+23
+</pre>
+<ul>
+<li>실행 결과</li>
+</ul>
+<pre class="language-">choiseonmun
+2014136127
+Computer Engineering
+23
+</pre>
+<hr>
+
+      </div>
+      <div class="md-sidebar-toc"><pre><code>* [8. 구조체와 파일 입출력](#8-구조체와-파일-입출력)
+	* [- 학습 목표](#-학습-목표)
+	* [- 구조체](#-구조체)
+	* [- 파일 입출력](#-파일-입출력)
+</code></pre>
+<ul>
+<li><a href="#%EA%B3%BC%EC%A0%9C">과제</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+
+
+
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())
+</script>
+
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+
+  </html>
